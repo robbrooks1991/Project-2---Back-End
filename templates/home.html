@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+   <div class="container-fluid">
+       <h1 class="main_title">Premier League Statistics</h1>
+       <p>Welcome to the new web application which takes the statistics from the premier league and puts them into easy to read graphs and tables for you to analyse. It allows you as the user to select your favourite team or player and find out their statistics from the past season.
+       Below, you can choose from either team statistics or player statistics.</p>
+   </div>
+
+    <div class="container-fluid">
+        <div class="col-xs-12 col-lg-6">
+            <a href="{{ url_for('team_stats') }}">
+                <h3>Team Stats</h3>
+            </a>
+            <a href="{{ url_for('team_stats') }}">
+                <img src="{{ url_for('static', filename="images/team_stats.jpg", width=400) }}" alt="Team Stats" sizes="5px"/>
+            </a>
+        </div>
+
+        <div class="col-xs-12 col-lg-6">
+            <a href="{{ url_for('player_stats') }}">
+                <h3>Player Stats</h3>
+            </a>
+            <a href="{{ url_for('player_stats') }}">
+                <img src="{{ url_for('static', filename="images/player_stats.jpg") }}" alt="Player Stats"/>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

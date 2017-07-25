@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+   <div class="jumbo">
+       <h2>Welcome Bootcampers to my flask app!</h2>
+       <h3>This is the home page...</h3>
+   </div>
+
+    <!-- menu select -->
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Teams
+          </div>
+          <div class="chart-stage">
+            <div id="menu-select"></div>
+          </div>
+        </div>
+      </div>
+      <!-- menu select -->
+
+          <!-- funding Pie -->
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Time of Goal
+              </div>
+              <div class="chart-stage">
+                <div id="time_of_goal"></div>
+              </div>
+            </div>
+          </div>
+          <!-- funding Pie -->
+
+    <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Home and Away Goals
+          </div>
+          <div class="chart-stage">
+            <div id="line-chart-home-away"></div>
+          </div>
+        </div>
+      </div>
+
+    <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Goals Scored
+          </div>
+          <div class="chart-stage">
+            <div id="goal_scorers"></div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Metric 2 -->
+      <div class="col-sm-2">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Total Goals
+          </div>
+          <div class="chart-stage">
+            <div id="totalgoals"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Metric 2 -->
+
+{% endblock %}
