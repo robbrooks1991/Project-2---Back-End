@@ -1,0 +1,26 @@
+.dc-select-menu {
+    background: #33CC99;
+    width: 100%;
+    border: none;
+    position: relative;
+    height: 31px;
+    font-size: 15px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 0px;
+}
+
+#time_of_goal {
+    font-size: 60px;
+    height: 500px;
+}
+
+#goals_home_away{
+
+}
+
+#goals_month{
+
+}

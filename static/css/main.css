@@ -64,12 +64,12 @@ li:hover {
     opacity: 0.8;
 }
 
-p {
+.jumbotron p {
     font-family: "montserrat", sans-serif;
     font-size: 20px;
-    text-align: center;
     color: white;
 }
+
 
 h2 {
     color: white;
@@ -79,6 +79,11 @@ h3 {
     color: #984B43;
     text-align: center;
     font-family: "montserrat", sans-serif;
+}
+
+h5 {
+    text-align: center;
+    color: white;
 }
 
 .main_title {
@@ -112,10 +117,4 @@ footer p {
     color: white;
     font-size: 15px;
     font-family: "montserrat", sans-serif;
-}
-
-.line{
-    fill:none;
-    stroke-width: 2px;
-    color: red;
 }

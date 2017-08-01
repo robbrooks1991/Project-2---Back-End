@@ -35,71 +35,127 @@ function makeGraphs(error, goalsJson) {
             return d["home_away"]
         });
 
-        var goal_scorersDim = ndx.dimension(function(d) {
+        var stadiumDim = ndx.dimension(function (d) {
+            return d["location"]
+        });
+
+        var scorerDim = ndx.dimension(function (d) {
             return d["scorer"]
         });
 
-        var goals_month = dateDim.group().reduceSum(function (d) {
-            return d["_id"]
+//CALCULATE METRICS AND GROUPS
+        var home_goals_month = dateDim.group().reduceSum(function (d) {
+            return d["home_away"]
         });
 
-
-
-
-//CALCULATE METRICS AND GROUPS
-        //var numGoalsByTeam = teamDim.group();
         var numGoalsByTimeOfGoal = time_of_goalDim.group();
+
+        var numGoalsByDate = dateDim.group();
+
+        var numGoalsHomeAway = home_awayDim.group();
+
         var teamGroup = teamDim.group();
-        var numGoalshome_away = home_awayDim.group();
 
-        var goal_scorers = goal_scorersDim.group();
-        var max_goalscorer = goal_scorers.top(1)[0]["scorers"];
+        var numStadiumGoals = stadiumDim.group();
 
-        var all = ndx.groupAll();
-        var total_goals = ndx.groupAll().reduceSum(function (d) {
-            return d["scorers"]
-        })
+        var group_by_scorer = scorerDim.group();
+        var max_scorer = group_by_scorer.top(3);
+            console.log(max_scorer[0].key);
+            console.log(max_scorer[1].key);
+            console.log(max_scorer[2].key);
 
+        document.getElementById("topscorer").innerHTML = [
+            (max_scorer[0].key)];
+        document.getElementById("topscorer1").innerHTML = [
+            (max_scorer[1].key)];
+        document.getElementById("topscorer2").innerHTML = [
+            (max_scorer[2].key)];
+
+
+        //var all = ndx.groupAll();
+        //console.log(all);
 
 //DEFINE VALUES TO BE USED
         var minDate = dateDim.bottom(1)[0]["date"];
         var maxDate = dateDim.top(1)[0]["date"];
 
+        console.log(minDate);
+        console.log(maxDate);
 
 //CHARTS
-    var home_away = dc.lineChart("#line-chart-home-away");
+    var stadium_goals = dc.barChart("#stadium_goals");
+    var goals_month = dc.lineChart("#goals_month");
     var time_of_goal_chart = dc.pieChart("#time_of_goal");
-    var totalgoals = dc.numberDisplay("#numberofgoals");
-
+    var GoalsHomeAwayND = dc.rowChart('#goals_home_away');
+    //var top_goal_scorers = dc.numberDisplay('#topgoalscorer');
+    //var topgoalscorer = dc.rowChart('#topscorer');
 
 
 //ACTUAL CHARTS AND THEIR CSS
-        selectField = dc.selectMenu('#menu-select')
+
+        /*top_goal_scorers
+            .valueAccessor(function (d) {
+                return d;
+            })
+            .group(max_scorer[0].key);*/
+
+         selectField = dc.selectMenu('#menu-select')
             .dimension(teamDim)
             .group(teamGroup);
 
-        totalgoals
-           .formatNumber(d3.format("d"))
-           .valueAccessor(function (d) {
-               return d;
-           })
-           .group(total_goals);
+        stadium_goals
+            .width(800)
+            .height(200)
+            .margins({top: 10, right: 50, bottom: 30, left:50})
+            //.brushOn(false)
+            .x(d3.scale.linear())
+            .dimension(stadiumDim)
+            .group(numStadiumGoals)
+            .elasticY(true)
+            .xAxisLabel("Stadium")
+            .yAxisLabel("Number of Goals")
+            .x(d3.scale.ordinal())
+            .yAxis().ticks(4);
 
-        home_away
-            .width(500).height(200)
+        goals_month
+            .width(800)
+            .height(200)
+            .margins({top: 10, right: 50, bottom: 30, left:50})
             .dimension(dateDim)
-            .group(goals_month)
-            .x(d3.time.scale().domain([minDate,maxDate]));
-
+            .group(numGoalsByDate)
+            .stack(home_goals_month)
+            .x(d3.time.scale().domain([minDate, maxDate]))
+            .elasticY(true)
+            .renderArea(true)
+            .xAxisLabel("Months")
+            .yAxisLabel("Number of Goals")
+            .yAxis().ticks(4);
 
         time_of_goal_chart
-           .height(220)
-           .radius(90)
-           .innerRadius(40)
-           .transitionDuration(1500)
-           .dimension(time_of_goalDim)
-           .group(numGoalsByTimeOfGoal);
+            .height(400)
+            .radius(90)
+            .innerRadius(40)
+            .externalLabels(30)
+            //.drawPaths(true)
+            //.externalRadiusPadding(50)
+            .transitionDuration(1500)
+            .dimension(time_of_goalDim)
+            .group(numGoalsByTimeOfGoal)
+            .legend(dc.legend());
 
+        GoalsHomeAwayND
+            .width(500)
+            .height(250)
+            .elasticX(true)
+            .dimension(home_awayDim)
+            .group(numGoalsHomeAway);
+
+        /*topgoalscorer
+           .width(300)
+           .height(250)
+           .dimension(top_scorerDim)
+           .group(goal_scorers)
+           .xAxis().ticks(4);*/
 
         dc.renderAll();
-        }};
+        }}

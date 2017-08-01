@@ -1,69 +1,131 @@
 {% extends "layout.html" %}
 {% block content %}
-   <div class="jumbo">
-       <h2>Welcome Bootcampers to my flask app!</h2>
-       <h3>This is the home page...</h3>
-   </div>
 
-    <!-- menu select -->
-      <div class="col-sm-6">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Teams
-          </div>
-          <div class="chart-stage">
-            <div id="menu-select"></div>
-          </div>
+    <hr>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Team Statistics</h1>
+            <p>This page provides you with team statistics from the Premier League season 2016/2017.</p>
         </div>
-      </div>
-      <!-- menu select -->
+    </div>
 
-          <!-- funding Pie -->
-          <div class="col-sm-6">
-            <div class="chart-wrapper">
-              <div class="chart-title">
-                Time of Goal
-              </div>
-              <div class="chart-stage">
-                <div id="time_of_goal"></div>
-              </div>
+    <div class="container">
+        <div class="row">
+                <!-- Team menu select -->
+            <div class="col-lg-6 col-xs-12">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Teams
+                    </div>
+                    <div class="chart-stage">
+                        <div id="menu-select"></div>
+                    </div>
+                </div>
+                <!-- Team menu select -->
+
+                <!-- Home and Away Goals rowChart -->
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Home and Away Goals
+                    </div>
+                    <div class="chart-stage">
+                        <div id="goals_home_away"></div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <!-- funding Pie -->
+                <!-- Home and Away Goals rowChart -->
 
-    <div class="col-sm-6">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Home and Away Goals
-          </div>
-          <div class="chart-stage">
-            <div id="line-chart-home-away"></div>
-          </div>
-        </div>
-      </div>
+                <!-- Time of goal pie chart -->
+            <div class="col-lg-6 col-xs-12">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Time of Goals
+                    </div>
+                    <div class="chart-stage">
+                        <div id="time_of_goal"></div>
+                    </div>
+                </div>
+                <!-- Time of goal pie chart -->
 
-    <div class="col-sm-6">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Goals Scored
-          </div>
-          <div class="chart-stage">
-            <div id="goal_scorers"></div>
-          </div>
-        </div>
-      </div>
+                <!-- Top Goal Scorers (Individual and Team) -->
+                <div class="row">
+                    <div class="col-lg-6 col-xs-6">
+                         <div class="chart-wrapper">
+                             <div class="chart-title">
+                                 Top Individual Goalscorer
+                             </div>
+                             <div class="chart-stage">
+                                 <div>Twat</div>
+                             </div>
+                         </div>
+                    </div>
 
-    <!-- Metric 2 -->
-      <div class="col-sm-2">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Total Goals
-          </div>
-          <div class="chart-stage">
-            <div id="totalgoals"></div>
-          </div>
+                    <div class="col-lg-6 col-xs-6">
+                         <div class="chart-wrapper">
+                             <div class="chart-title">
+                                 Top Individual Goalscorer
+                             </div>
+                             <div class="chart-stage">
+                                 <ol>
+                                    <li id="topscorer"></li>
+                                     <li id="topscorer1"></li>
+                                     <li id="topscorer2"></li>
+                                 </ol>
+                             </div>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+                 <!-- Top Goal Scorers (Individual and Team) -->
         </div>
-      </div>
-      <!-- Metric 2 -->
+
+        <!-- Stadium Goals Bar Chart -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Stadium Goals
+                    </div>
+                    <div class="chart-stage">
+                        <div id="stadium_goals"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Stadium Goals Bar Chart -->
+
+        <!-- Goals per month line chart -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Number of Goals per Month
+                    </div>
+                    <div class="chart-stage">
+                        <div id="goals_month"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Goals per month line chart -->
+
+     <!-- TESTER
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        TESTER
+                    </div>
+                    <div class="chart-stage">
+                        <div id="topgoalscorer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- TESTER -->
+
+    </div>
+
 
 {% endblock %}
